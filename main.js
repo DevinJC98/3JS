@@ -81,26 +81,29 @@ const planet = new THREE.SphereGeometry(25);
 const sunmaterial = new THREE.MeshStandardMaterial(0xf5f749);
 sunmaterial.emissive = new THREE.Color(0xfdfdb3);
 const sun = new THREE.Mesh(planet, sunmaterial);
-sun.scale.setScalar(4);
-sun.position.set(-900, 0, 0);
+sun.scale.setScalar(15);
+sun.position.set(-1200, 0, 0);
 scene.add(sun);
 
 //mercury
-const mercurymaterial = new THREE.MeshStandardMaterial(0x121212);
+
+const mercurytexture = new THREE.TextureLoader().load("mercury.webp");
+const mercurymaterial = new THREE.MeshStandardMaterial({ map: mercurytexture });
 const mercury = new THREE.Mesh(planet, mercurymaterial);
 mercury.position.x = -600;
-mercury.scale.setScalar(1);
+mercury.scale.setScalar(0.3);
 scene.add(mercury);
 
 //venus
-const venusmaterial = new THREE.MeshStandardMaterial(0x121212);
+const venustexture = new THREE.TextureLoader().load("venus.webp");
+const venusmaterial = new THREE.MeshStandardMaterial({ map: venustexture });
 const venus = new THREE.Mesh(planet, venusmaterial);
 venus.position.x = -300;
-venus.scale.setScalar(1);
+venus.scale.setScalar(0.9);
 scene.add(venus);
 
 //earth
-const earthtexture = new THREE.TextureLoader().load("badearth-01.jpg");
+const earthtexture = new THREE.TextureLoader().load("earth.webp");
 const earthmaterial = new THREE.MeshStandardMaterial({ map: earthtexture });
 const earth = new THREE.Mesh(planet, earthmaterial);
 earth.position.x = 0;
@@ -109,7 +112,8 @@ earth.name = "Earth";
 scene.add(earth);
 
 //moon
-const moonmaterial = new THREE.MeshStandardMaterial(0x121212);
+const moontexture = new THREE.TextureLoader().load("moon.webp");
+const moonmaterial = new THREE.MeshStandardMaterial({ map: moontexture });
 const moon = new THREE.Mesh(planet, moonmaterial);
 moon.position.set(50, 0, 0);
 moon.scale.setScalar(0.25);
@@ -123,6 +127,7 @@ const marstexture = new THREE.TextureLoader().load("mars.webp");
 const marsmaterial = new THREE.MeshStandardMaterial({ map: marstexture });
 const mars = new THREE.Mesh(planet, marsmaterial);
 mars.position.x = 300;
+mars.scale.setScalar(0.5);
 scene.add(mars);
 
 //jupiter
@@ -130,7 +135,7 @@ const jupitertexture = new THREE.TextureLoader().load("joopitr-01.webp");
 const jupitermaterial = new THREE.MeshStandardMaterial({ map: jupitertexture });
 const jupiter = new THREE.Mesh(planet, jupitermaterial);
 jupiter.position.x = 600;
-jupiter.scale.setScalar(1);
+jupiter.scale.setScalar(4);
 scene.add(jupiter);
 
 //saturn
@@ -144,25 +149,27 @@ const saturnsring = new THREE.Mesh(ringshape, jupitermaterial);
 saturnsring.rotation.x = 90;
 saturnsring.rotation.z = 20;
 saturn.position.x = 900;
-saturn.scale.setScalar(1);
+saturn.scale.setScalar(3);
+saturnsring.scale.setScalar(3);
 const ringholder = new THREE.Group();
 ringholder.position.x = 900;
 ringholder.add(saturnsring);
 scene.add(saturn, ringholder);
 
 //uranus
-const uranusmaterial = new THREE.MeshStandardMaterial(0xfffffff);
+const uranustexture = new THREE.TextureLoader().load("uranus.webp");
+const uranusmaterial = new THREE.MeshStandardMaterial({ map: uranustexture });
 const uranus = new THREE.Mesh(planet, uranusmaterial);
 uranus.position.x = 1200;
-uranus.scale.setScalar(1);
+uranus.scale.setScalar(2);
 scene.add(uranus);
 
 //neptune
-const neptunetexture = new THREE.TextureLoader().load("joopitr.webp");
+const neptunetexture = new THREE.TextureLoader().load("neptune.webp");
 const neptunematerial = new THREE.MeshStandardMaterial({ map: neptunetexture });
 const neptune = new THREE.Mesh(planet, neptunematerial);
 neptune.position.x = 1500;
-neptune.scale.setScalar(1);
+neptune.scale.setScalar(2);
 scene.add(neptune);
 
 //UI Events
@@ -179,7 +186,7 @@ pastbutton.addEventListener("click", function () {
     case 0:
       const sunmove = setInterval(function () {
         camera.position.x -= warpspeed;
-        camera.position.z += 0.5;
+        camera.position.z += 1.2;
         if (camera.position.x <= sun.position.x) {
           controls.target = new THREE.Vector3(
             sun.position.x,
@@ -195,6 +202,7 @@ pastbutton.addEventListener("click", function () {
     case 1:
       const mercurymove = setInterval(function () {
         camera.position.x -= warpspeed;
+        camera.position.z -= 0.3;
         if (camera.position.x <= mercury.position.x) {
           controls.target = new THREE.Vector3(
             mercury.position.x,
