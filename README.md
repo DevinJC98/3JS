@@ -2,12 +2,16 @@
 
 ## Install Commands
 
-npm install --save three
-npm install --save-dev vite
+- npm install --save three
+- npm install --save-dev vite
 
 ## Testing Commands
 
 npx vite
+
+# Documentation
+
+https://threejs.org/docs/
 
 ## Project Purpose
 
