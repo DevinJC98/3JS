@@ -15,6 +15,7 @@ camera.position.z = 120;
 
 //Responsiveness is rough in 3d
 window.addEventListener("resize", function () {
+  //resize and update the camera aspect ratio
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 
@@ -30,7 +31,7 @@ document.body.appendChild(renderer.domElement);
 
 //lighting
 //fake shadows on everything the point light isnt illuminating
-const ambience = new THREE.AmbientLight(0xffffff, 0.1);
+const ambience = new THREE.AmbientLight(0xffffff, 0.05);
 //directional light imitating "The Sun"
 const pointlight = new THREE.DirectionalLight(0xffffff);
 pointlight.position.set(-70, 25, 70);
@@ -40,6 +41,7 @@ scene.add(pointlight, ambience);
 function animate() {
   renderer.render(scene, camera);
 
+  //planet
   mercury.rotation.y += 0.005;
   venus.rotation.y += 0.005;
   earth.rotation.y += 0.005;
@@ -59,9 +61,8 @@ renderer.setAnimationLoop(animate);
 //Default Target is 0,0,0
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enablePan = false;
-controls.enableZoom = false;
 
-//random generation
+//this function generates a single star.
 function addstar() {
   //shape, mat, mesh
   const geometry = new THREE.SphereGeometry(1, 1, 1);
@@ -78,13 +79,13 @@ function addstar() {
   const z = Math.random() * (yzmax - yzmin) + yzmin;
   const x = Math.random() * (xmax - xmin) + xmin;
 
-  //set star coords with previously built array ^
+  //star
   sphere.position.set(x, y, z);
   sphere.name = "Star";
   scene.add(sphere);
 }
 
-//build an array of 200 and make each part of the array call the addstar function
+//build an array of 500 and make each part of the array call the addstar function
 Array(500).fill().forEach(addstar);
 
 //planet textures
