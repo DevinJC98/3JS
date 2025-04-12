@@ -60,6 +60,7 @@ renderer.setAnimationLoop(animate);
 //camera controls for click and drag
 //Default Target is 0,0,0
 const controls = new OrbitControls(camera, renderer.domElement);
+//Manual panning is locked because it breaks the movement between planets using the buttons.
 controls.enablePan = false;
 
 //star

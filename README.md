@@ -17,6 +17,7 @@ https://threejs.org/docs/
 
 - This Project was created for cprg-310-a assignment: Implementing emerging trends. The technology I chose was threejs, a javascript library that allows developers to render a website as a 3d scene with cameras, lighting, and 3d models. I chose 3js as I have previously experemented with working in a 3 dimensional space using the unity game engine, as well as creating 3d models in blender.
 - Creating a 3d website can allow a much more interesting and immersive user experience, but it can be difficult to understand as a beginner as working in a 3d space adds another layer of complexity and opens up more potential issues.
+- I plan on to continue developing this website in the future as i belive it will be a good project to add into my portfolio.
 
 ## The Project
 
@@ -48,6 +49,8 @@ Raycasting
 
 ## Potential Updates
 
+- Improve the visual design of the ui to allow for a more intuitive ui. I would like to remove the tips in the top right.
+- Look into better alternatives to the very long switch cases.
 - Main.js contains almost 500 lines of javascript. scrolling through it is a nightmare and it would likely be easier to work with if it were broken into several smaller files.
 - Higher quality textures of each planet, as well as bump maps to give the spheres texture.
 - Orbit the planets around the sun.
@@ -59,7 +62,7 @@ Raycasting
 
 ## Issues
 
-- The current navigation between planets changes the position of the camera on the z-axis regardless of rotation. This caused an issue when the user rotates the camera to be in line with the planets. It is not a large issue, however it makes the distance away from the planets inconsistent. If i was able to find a way to adjust the cameras distance relative to the target rather than along a single axis, this would no longer be an issue.
+- The current navigation between planets changes the position of the camera on the z-axis regardless of rotation. This caused an issue when the user rotates the camera to be in line with the planets, then clicks one of the buttons. It is not a large issue, however it makes the distance away from the planets inconsistent. If i was able to find a way to adjust the cameras distance relative to the target rather than along a single axis, this would no longer be an easy fix.
 - The responsiveness breaks slightly when adjusting the screen size in the inspector. This is not a problem when adjusting the screen size in a minimized window. I am very confused.
 - the scale of each planet is not the same as in real life, I think it's best untill i understand the library a bit better before i start stress-testing the performance when the sun is 1000 times larger than the earth and i throw in millions of stars.
 - Certain areas of the documentation are signifigantly more detailed than other. This made it difficult to find out how to use certain functions.
