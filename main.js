@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OrbitControls, ThreeMFLoader } from "three/examples/jsm/Addons.js";
+import { OrbitControls } from "three/examples/jsm/Addons.js";
 
 //sets the active scene
 const scene = new THREE.Scene();
@@ -62,6 +62,7 @@ renderer.setAnimationLoop(animate);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enablePan = false;
 
+//star
 //this function generates a single star.
 function addstar() {
   //shape, mat, mesh
@@ -69,18 +70,18 @@ function addstar() {
   const material = new THREE.MeshBasicMaterial(0xffffff);
   const sphere = new THREE.Mesh(geometry, material);
 
+  //range for random values
   const yzmin = -750;
   const yzmax = 750;
   const xmin = -1800;
   const xmax = 1800;
 
-  //build an array of three, fill it with random values
+  //generate 3 random values to define where the star will be generated
   const y = Math.random() * (yzmax - yzmin) + yzmin;
   const z = Math.random() * (yzmax - yzmin) + yzmin;
   const x = Math.random() * (xmax - xmin) + xmin;
-
-  //star
   sphere.position.set(x, y, z);
+
   sphere.name = "Star";
   scene.add(sphere);
 }
@@ -88,7 +89,7 @@ function addstar() {
 //build an array of 500 and make each part of the array call the addstar function
 Array(500).fill().forEach(addstar);
 
-//planet textures
+//planet shape
 const planet = new THREE.SphereGeometry(25);
 
 //sun
@@ -102,8 +103,7 @@ sun.name = "Sun";
 scene.add(sun);
 
 //mercury
-
-const mercurytexture = new THREE.TextureLoader().load("mercury.webp");
+const mercurytexture = new THREE.TextureLoader().load("images/mercury.webp");
 const mercurymaterial = new THREE.MeshStandardMaterial({ map: mercurytexture });
 const mercury = new THREE.Mesh(planet, mercurymaterial);
 mercury.position.x = -600;
@@ -112,7 +112,7 @@ mercury.name = "Mercury";
 scene.add(mercury);
 
 //venus
-const venustexture = new THREE.TextureLoader().load("venus.webp");
+const venustexture = new THREE.TextureLoader().load("images/venus.webp");
 const venusmaterial = new THREE.MeshStandardMaterial({ map: venustexture });
 const venus = new THREE.Mesh(planet, venusmaterial);
 venus.position.x = -300;
@@ -121,7 +121,7 @@ venus.name = "Venus";
 scene.add(venus);
 
 //earth
-const earthtexture = new THREE.TextureLoader().load("earth.webp");
+const earthtexture = new THREE.TextureLoader().load("images/earth.webp");
 const earthmaterial = new THREE.MeshStandardMaterial({ map: earthtexture });
 const earth = new THREE.Mesh(planet, earthmaterial);
 earth.position.x = 0;
@@ -130,7 +130,7 @@ earth.name = "Earth";
 scene.add(earth);
 
 //moon
-const moontexture = new THREE.TextureLoader().load("moon.webp");
+const moontexture = new THREE.TextureLoader().load("images/moon.webp");
 const moonmaterial = new THREE.MeshStandardMaterial({ map: moontexture });
 const moon = new THREE.Mesh(planet, moonmaterial);
 moon.position.set(50, 0, 0);
@@ -141,8 +141,7 @@ earthmoon.add(moon);
 scene.add(earthmoon);
 
 //mars
-
-const marstexture = new THREE.TextureLoader().load("mars.webp");
+const marstexture = new THREE.TextureLoader().load("images/mars.webp");
 const marsmaterial = new THREE.MeshStandardMaterial({ map: marstexture });
 const mars = new THREE.Mesh(planet, marsmaterial);
 mars.position.x = 300;
@@ -151,7 +150,7 @@ mars.name = "Mars";
 scene.add(mars);
 
 //jupiter
-const jupitertexture = new THREE.TextureLoader().load("joopitr-01.webp");
+const jupitertexture = new THREE.TextureLoader().load("images/jupiter.webp");
 const jupitermaterial = new THREE.MeshStandardMaterial({ map: jupitertexture });
 const jupiter = new THREE.Mesh(planet, jupitermaterial);
 jupiter.position.x = 600;
@@ -160,9 +159,8 @@ jupiter.name = "Jupiter";
 scene.add(jupiter);
 
 //saturn
-//make shape in blender and import instead of using build in shapes
 const ringshape = new THREE.TorusGeometry(33, 5, 2, 50);
-const saturntexture = new THREE.TextureLoader().load("Saturn.webp");
+const saturntexture = new THREE.TextureLoader().load("images/Saturn.webp");
 const saturnmaterial = new THREE.MeshStandardMaterial({ map: saturntexture });
 const saturn = new THREE.Mesh(planet, saturnmaterial);
 const saturnsring = new THREE.Mesh(ringshape, jupitermaterial);
@@ -179,7 +177,7 @@ saturnsring.name = "Saturn";
 scene.add(saturn, ringholder);
 
 //uranus
-const uranustexture = new THREE.TextureLoader().load("uranus.webp");
+const uranustexture = new THREE.TextureLoader().load("images/uranus.webp");
 const uranusmaterial = new THREE.MeshStandardMaterial({ map: uranustexture });
 const uranus = new THREE.Mesh(planet, uranusmaterial);
 uranus.position.x = 1500;
@@ -188,7 +186,7 @@ uranus.name = "Uranus";
 scene.add(uranus);
 
 //neptune
-const neptunetexture = new THREE.TextureLoader().load("neptune.webp");
+const neptunetexture = new THREE.TextureLoader().load("images/neptune.webp");
 const neptunematerial = new THREE.MeshStandardMaterial({ map: neptunetexture });
 const neptune = new THREE.Mesh(planet, neptunematerial);
 neptune.position.x = 1900;
